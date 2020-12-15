@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/wpb911/readmegenerator/issues"
   },
-  "homepage": "https://github.com/wpb911/readmegenerator#readme"
+  "homepage": "https://github.com/wpb911/readmegenerator#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
 }
