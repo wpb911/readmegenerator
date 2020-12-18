@@ -131,9 +131,9 @@ const answers = await promptUser();
 
 const html = generateREADME(answers);
 
-await writeFileAsync('proGeneratorREADME.md', html);
+await writeFileAsync('README.md', html);
 
-console.log('Successfully wrote to test.md');
+console.log('Successfully wrote to README.md');
 } catch (err) {
 console.log(err);
 }
