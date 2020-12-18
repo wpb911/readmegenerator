@@ -1,34 +1,41 @@
-# Main One                        
-![GNUv2](https://img.shields.io/badge/GNU-General%20Public%20License%20v2.0-lightgrey)
+# ReadMe Generator                       
+  ![MIT  ](https://img.shields.io/badge/MIT-License-orange)
+  [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
 
-## Description
-Should get the project off to a good start. 
+  ## Description
+  This project's goal is to facilitate a develper being able to create a good README file by answering the prompts from the command line and then the app will output a markdown formatted README from the user input. This app is a command line driven Node program that utilizes the inquirer package to gather input from the command line. 
 
-## Table of Contents
+  ## Table of Contents
 
-* [Installation](#Installation)
-* [Usage](#Usage)
-* [Contributing](#Contributing)
-* [Tests](#Tests)
-* [Questions](#Questions)
-* [License](#License)
+  * [Installation](#Installation)
+  * [Usage](#Usage)
+  * [Contributing](#Contributing)
+  * [Tests](#Tests)
+  * [Questions](#Questions)
+  * [License](#License)
 
-## Installation
-run it from the command line. 
+  ## Installation
+  Copy files from github repo to desired directory 
+  run npm install in the directory 
 
-## Usage
-node index.js
+  ## Usage
+  node index.js
 
-## Contributing
-all the github contributions
+  An sample run of the application can be seen here:
+  [Sample Video](readmegen.mov) 
 
+  ## Contributing
+  All contributions must follow the [Contributor Covenant](CODE_OF_CONDUCT.md)
 
-## Tests
-run the app and see review the output from readme file
+  ## Tests
+  There are no currently defined test units. 
 
-## Questions
-GitHub profile: https://github.com/wpb911
-Contact me at: William@eotoit.com with any additional questions.
-## License
-GNUv2 License
+  ## Questions
+  GitHub profile: https://github.com/wpb911
+
+  Contact me at: wpb911@gmail.com with any additional questions.
+
+  ## License
+  MIT License 
+  

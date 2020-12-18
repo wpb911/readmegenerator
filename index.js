@@ -2,8 +2,10 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
 
+//promisify the file object for Async operation
 const writeFileAsync = util.promisify(fs.writeFile);
 
+//use the inquirer library for input from the user
 const promptUser = () => {
   return inquirer.prompt([
     {
@@ -55,94 +57,81 @@ const promptUser = () => {
         'GNU General Public License v2.0',
         'GNU General Public License v3.0',
         'Mozilla Public License 2.0',          
-        'The Unlicense',
+        'Unlicense',
       ],
-      filter: function (val) {
-        if(val === "MIT License")
-        return "![MIT  ](https://img.shields.io/badge/MIT-License-orange)";
-        if(val === "GNU General Public License v2.0")
-        return "![GNUv2](https://img.shields.io/badge/GNU-General%20Public%20License%20v2.0-lightgrey)";
-        if(val === "GNU General Public License v3.0")
-        return "![GNUv3](https://img.shields.io/badge/GNU-General%20Public%20License%20v3.0-yellowgreen)";          
-        if(val === "The Unlicense")
-        return "![TheUnlicense](https://img.shields.io/badge/The%20-Unlicense-blue)";
-      },
+      
     },
   
   ]);
 };
-
-const generateHTML = (answers) =>    
-// function myTag(strings, personExp, ageExp) {
-//     let str0 = strings[0]; // "That "
-//     let str1 = strings[1]; // " is a "
+//generate the readme file from the inputs of the user
+const generateREADME = (answers) => { 
   
-    // There is technically a string after
-    // the final expression (in our example),
-    // but it is empty (""), so disregard.
-    // let str2 = strings[2];
+  function convertToBadge (val) {
+    if(val === "MIT License")
+    return "![MIT  ](https://img.shields.io/badge/MIT-License-orange)";
+    if(val === "GNU General Public License v2.0")
+    return "![GNUv2](https://img.shields.io/badge/GNU-General%20Public%20License%20v2.0-lightgrey)";
+    if(val === "GNU General Public License v3.0")
+    return "![GNUv3](https://img.shields.io/badge/GNU-General%20Public%20License%20v3.0-yellowgreen)";          
+    if(val === "Mozilla Public License 2.0")
+    return "![Mozilla](https://img.shields.io/badge/Mozilla-Public%20License%202.0-brightgreen)";
+    if(val === "Unlicense")
+    return "![TheUnlicense](https://img.shields.io/badge/The%20-Unlicense-blue)";
+  };
   
-  //   let ageStr;
-  //   if (ageExp > 99){
-  //     ageStr = 'centenarian';
-  //   } else {
-  //     ageStr = 'youngster';
-  //   }
-  
-  //   // We can even return a string built using a template literal
-  //   return `${str0}${personExp}${str1}${ageStr}`;
-  // }
-  
-`# ${answers.title}                       
-${answers.license}
+ //template literal wtih placeholders used to format where the user 
+ //input is placed
+  return `# ${answers.title}                       
+  ${convertToBadge(answers.license)}
 
 
-## Description
-${answers.description}
+  ## Description
+  ${answers.description}
 
-## Table of Contents
+  ## Table of Contents
 
-* [Installation](#Installation)
-* [Usage](#Usage)
-* [Contributing](#Contributing)
-* [Tests](#Tests)
-* [Questions](#Questions)
-* [License](#License)
+  * [Installation](#Installation)
+  * [Usage](#Usage)
+  * [Contributing](#Contributing)
+  * [Tests](#Tests)
+  * [Questions](#Questions)
+  * [License](#License)
 
-## Installation
-${answers.install}
+  ## Installation
+  ${answers.install}
 
-## Usage
-${answers.usage}
+  ## Usage
+  ${answers.usage}
 
-## Contributing
-${answers.contribution}
-
-
-## Tests
-${answers.tests}
-
-## Questions
-GitHub profile: https://github.com/${answers.github}
-Contact me at: ${answers.email} with any additional questions.
-## License
-${answers.license.substring(2,7)} License
-`;
+  ## Contributing
+  ${answers.contribution}
 
 
+  ## Tests
+  ${answers.tests}
 
-// Bonus using async/await and try/catch
+  ## Questions
+  GitHub profile: https://github.com/${answers.github}
+
+  Contact me at: ${answers.email} with any additional questions.
+
+  ## License
+  This application is covered under the ${answers.license} 
+  `;
+
+};
+
+
+// Uses async/await and try/catch
 const init = async () => {
 console.log('hi');
 try {
 const answers = await promptUser();
 
-console.log(`All answers: ${answers.title}`);
-console.log(`License text: ${answers.license}`);
+const html = generateREADME(answers);
 
-const html = generateHTML(answers);
-
-await writeFileAsync('test.md', html);
+await writeFileAsync('proGeneratorREADME.md', html);
 
 console.log('Successfully wrote to test.md');
 } catch (err) {
